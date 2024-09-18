@@ -1,24 +1,36 @@
+#讀取
 products = []
+with open('products.csv', 'r', encoding = 'utf-8') as f:
+    for line in f:
+        if '商品,價格' in line: #如果'商品,價格'存在
+            continue #跳過此物件
+        name, price = line.strip().split(',')
+        products.append([name,price])
+print(products)
+
+#讓使用者輸入
 while True:
     name = input('Product name:')
     if name == 'q':
         break
     price = input('Products price:')
     price = int(price)
-    # A
+    # 方法A
     # p = []
     # p.append(name)
     # p.append(price)
     # products.append(p)
-    # B
+    # 方法B
     # p = [name, price]
-    #C
+    # 方法C
     products.append([name, price])
 print(products)
 
+#印出購買紀錄
 for p in products:
     print(p[0], '的價格是', p[1])
 
+#寫入購買紀錄
 with open('products.csv', 'w', encoding='utf-8') as f:
     f.write('商品,價格\n')
     for p in products:
