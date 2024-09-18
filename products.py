@@ -1,12 +1,20 @@
-#讀取
+import os
 products = []
-with open('products.csv', 'r', encoding = 'utf-8') as f:
-    for line in f:
-        if '商品,價格' in line: #如果'商品,價格'存在
-            continue #跳過此物件
-        name, price = line.strip().split(',')
-        products.append([name,price])
-print(products)
+#檢查檔案是否存在
+if os.path.isfile('products.csv'):
+    # 讀取
+    print('File exist')
+    with open('products.csv', 'r', encoding='utf-8') as f:
+        for line in f:
+            if '商品,價格' in line:  # 如果'商品,價格'存在
+                continue  # 跳過此物件
+            name, price = line.strip().split(',')
+            products.append([name, price])
+    print(products)
+
+else:
+    print('File not found \nCreate new file')
+
 
 #讓使用者輸入
 while True:
